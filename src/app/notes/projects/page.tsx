@@ -22,6 +22,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
+import { authClient } from "@/lib/auth-client";
 
 type ProjectRecord = {
     id: string;
@@ -49,6 +50,8 @@ export default function ProjectsPage() {
     const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
     const [deletingId, setDeletingId] = useState<string | null>(null);
 
+    const { data: session, isPending } = authClient.useSession();
+
     useEffect(() => {
         getProjects().then(data => setProjects(data));
     }, []);
@@ -69,6 +72,14 @@ export default function ProjectsPage() {
             setConfirmDeleteId(null);
         }
     }
+
+    useEffect(() => {
+        if (!isPending && !session?.user) {
+            router.push("/login");
+        }
+    }, [isPending, session, router]);
+
+    if (isPending || !session?.user) return null;
 
     return (
         <div className="min-h-screen bg-[#0f0f0f] text-white">
