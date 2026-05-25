@@ -1,7 +1,23 @@
 {
     "name": "pyla-note",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "private": true,
+    "description": "The best note-takin app.",
+    "keywords": [
+        "notes",
+        "notepad",
+        "writing"
+    ],
+    "homepage": "https://github.com/axtraz/pyla-note",
+    "bugs": {
+        "url": "https://github.com/axtraz/pyla-note/issues"
+    },
+    "license": "MIT",
+    "author": "axtraz",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/axtraz/pyla-note.git"
+    },
     "type": "module",
     "scripts": {
         "dev": "next dev",
